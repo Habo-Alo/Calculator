@@ -1,0 +1,87 @@
+<!-- HTML for the calculator layout -->
+<div id="calculator">
+  <div class="display">0</div>
+  <button class="number">1</button>
+  <button class="number">2</button>
+  <button class="number">3</button>
+  <button class="operator">+</button>
+  <button class="number">4</button>
+  <button class="number">5</button>
+  <button class="number">6</button>
+  <button class="operator">-</button>
+  <button class="number">7</button>
+  <button class="number">8</button>
+  <button class="number">9</button>
+  <button class="operator">*</button>
+  <button class="clear">C</button>
+  <button class="number">0</button>
+  <button class="decimal">.</button>
+  <button class="operator">/</button>
+  <button class="equal">=</button>
+</div>
+
+<!-- CSS for styling the calculator -->
+<style>
+  #calculator {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .display {
+    background-color: #eee;
+    font-size: 36px;
+    line-height: 56px;
+    height: 56px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+  }
+  button {
+    background-color: white;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    width: 25%;
+    height: 64px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  button:hover {
+    background-color: #eee;
+  }
+  .operator {
+    background-color: #ddd;
+  }
+  .clear {
+    background-color: #ff8080;
+    color: white;
+  }
+</style>
+
+<!-- JavaScript for handling calculator logic -->
+<script>
+  const calculator = document.querySelector('#calculator');
+  const display = calculator.querySelector('.display');
+  let firstValue = null;
+  let operator = null;
+  let waitingForSecondValue = false;
+ 
+  calculator.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target.classList.contains('number')) {
+      inputNumber(target.textContent);
+    } else if (target.classList.contains('operator')) {
+      inputOperator(target.textContent);
+    } else if (target.classList.contains('clear')) {
+      clear();
+    } else if (target.classList.contains('decimal')) {
+      inputDecimal();
+    } else if (target.classList.contains('equal')) {
+      calculate();
+    }
+  });
+ 
+  function inputNumber(number) {
+    if (waitingFor
